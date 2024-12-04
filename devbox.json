@@ -1,0 +1,32 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.13.6/.schema/devbox.schema.json",
+  "packages": [
+    "python@3.11",
+    "vscode@latest",
+    "git@latest",
+    "mafft@latest"
+  ],
+  "shell": {
+    "init_hook": [
+      "echo 'Welcome to Nicolas Salamin!' > /dev/null"
+    ],
+    "scripts": {
+      "test": [
+        "echo \"Error: no test specified\" && exit 1"
+      ],
+      "install": [
+        "mkdir data",
+        "curl -o data/Q40687.fasta https://rest.uniprot.org/uniprotkb/Q40687.fasta",
+        "curl -o data/P36408.fasta https://rest.uniprot.org/uniprotkb/P36408.fasta",
+        "curl -o data/P18851.fasta https://rest.uniprot.org/uniprotkb/P18851.fasta"
+      ],
+      "vscode": [
+        "code"
+      ],
+      "align-sequence": [
+        "cat data/*.fasta | mafft --auto - > data/combined.fasta",
+        "cat data/combined.fasta"
+      ]
+    }
+  }
+}
